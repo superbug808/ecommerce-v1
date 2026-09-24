@@ -1,0 +1,44 @@
+### Create Luxury Penthouse Suite (POST)
+POST http://localhost:4000/api/products
+Content-Type: application/json
+
+{
+  "title": "Luxury Penthouse Suite",
+  "description": "Panoramic floor-to-ceiling Las Vegas Strip views, wrap-around balcony, private hot tub, and dedicated butler service.",
+  "price": 850.00,
+  "maxOccupancy": 4,
+  "amenities": [
+    "King Bed",
+    "Strip View",
+    "Private Hot Tub",
+    "Butler Service",
+    "Free Wi-Fi"
+  ],
+  "isAvailable": true,
+  "imageUrl": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b"
+}
+
+### Create Executive Double Queen Room (POST)
+POST http://localhost:4000/api/products
+Content-Type: application/json
+
+{
+  "title": "Executive Double Queen Room",
+  "description": "Spacious room featuring two plush queen beds, ergonomic workstation, and marble bathroom.",
+  "price": 229.00,
+  "maxOccupancy": 4,
+  "amenities": [
+    "Two Queen Beds",
+    "Workstation",
+    "Marble Bathroom",
+    "Mini Fridge"
+  ],
+  "isAvailable": true
+}
+
+### Get All Hotel Rooms (GET)
+GET http://localhost:4000/api/products
+
+### Get Single Room by ID (GET)
+# Replace ROOM_ID_HERE with a valid _id returned from the GET request above
+GET http://localhost:4000/api/products/ROOM_ID_HERE

@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# NestJS build output
+/api/dist/
+
+# Next.js build output
+/web/.next/
+/web/out/
+
+# Environment files (CRITICAL: Keeps DB password secret)
+.env
+.env.local
+*.env
+
+# IDE / OS junk
+.DS_Store
+.vscode/
+*.log
