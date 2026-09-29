@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { Room } from '../types/product';
+import Navbar from '../components/Navbar';
+import RoomSearchFilter from '../components/RoomSearchFilter';
 
 const MOCK_ROOMS: Room[] = [
   {
@@ -50,56 +51,43 @@ export default async function HomePage() {
   const rooms = await getRooms();
 
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-12 dark:bg-slate-950 sm:px-12 lg:px-24">
-      <div className="mx-auto max-w-7xl">
-        <header className="mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-            Luxury Stays
-          </span>
-          <h1 className="mt-2 text-4xl font-extrabold text-slate-900 dark:text-white sm:text-5xl">
-            Find Your Perfect Room
-          </h1>
-        </header>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 pb-20">
+      <Navbar />
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {rooms.map((room) => (
-            <Link
-              key={room._id}
-              href={`/rooms/${room._id}`}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-1 dark:border-slate-800 dark:bg-slate-900"
-            >
-              <div className="relative h-60 w-full bg-slate-100 dark:bg-slate-800">
-                <Image
-                    src={
-                        room.imageUrl ??
-                        'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=800'
-                    }
-                    alt={room.title ?? 'Hotel Room'}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-              <div className="p-6">
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-                  {room.title}
-                </h2>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-                  {room.description}
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-lg font-bold text-indigo-600 dark:text-indigo-400">
-                    ${room.price} / night
-                  </span>
-                  <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                    View Details →
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
+      {/* Rich Luxury Hero Section */}
+      <section className="relative overflow-hidden px-6 pt-16 pb-24 sm:px-12 lg:px-24 bg-gradient-to-br from-indigo-950 via-purple-950 to-slate-950 text-white shadow-2xl">
+        {/* Ambient background glow elements */}
+        <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
+
+        <div className="relative mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6 text-center lg:text-left">
+            <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/15 px-4 py-1.5 text-xs font-bold text-amber-400 border border-amber-500/30 shadow-inner">
+              ✨ 5-Star Luxury Resort & Spa
+            </span>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl leading-[1.1]">
+              Where Elegance Meets <span className="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">Absolute Comfort</span>
+            </h1>
+            <p className="text-base sm:text-lg text-indigo-100/80 max-w-xl mx-auto lg:mx-0 font-light">
+              Immerse yourself in world-class amenities, breathtaking panoramic vistas, and meticulously crafted suites designed for pure relaxation.
+            </p>
+          </div>
+          <div className="relative h-[280px] sm:h-[380px] w-full rounded-3xl overflow-hidden shadow-2xl border border-indigo-500/30">
+            <Image
+              src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200"
+              alt="Luxury Hotel Lobby"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
         </div>
-      </div>
-    </main>
+      </section>
+
+      {/* Interactive Compact Bar & Rooms Grid */}
+      <main className="mx-auto max-w-7xl px-6 sm:px-12 lg:px-24">
+        <RoomSearchFilter initialRooms={rooms} />
+      </main>
+    </div>
   );
 }
